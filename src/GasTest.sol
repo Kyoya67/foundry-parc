@@ -2,29 +2,24 @@
 pragma solidity ^0.8.13;
 
 contract GasTest {
-    // memoryを使用する関数
-    function withMemory(string memory str) public pure returns (string memory) {
-        return str;
+    string public storageStr;
+    uint256[] public storageArray;
+
+    // ストレージに書き込むテスト
+    function withStorage(string memory str) public {
+        storageStr = str; // ストレージに書き込み
     }
 
-    // calldataを使用する関数
+    // メモリを使用するテスト
+    function withMemory(string memory str) public pure returns (string memory) {
+        string memory temp = str; // メモリ内でコピー
+        return temp;
+    }
+
+    // calldataを使用するテスト
     function withCalldata(
         string calldata str
     ) public pure returns (string memory) {
-        return str;
-    }
-
-    // 配列でのmemoryテスト
-    function withMemoryArray(
-        uint256[] memory arr
-    ) public pure returns (uint256[] memory) {
-        return arr;
-    }
-
-    // 配列でのcalldataテスト
-    function withCalldataArray(
-        uint256[] calldata arr
-    ) public pure returns (uint256[] memory) {
-        return arr;
+        return str; // calldataを直接返す
     }
 }

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import {Test, console} from "forge-std/Test.sol";
+import {Test, console} from "lib/forge-std/src/Test.sol";
 import {GasTest} from "../src/GasTest.sol";
 
 contract GasTestTest is Test {
@@ -18,7 +18,13 @@ contract GasTestTest is Test {
         uint256 gasBefore;
         uint256 gasAfter;
 
-        // memoryのガス計測
+        // ストレージのガス計測
+        gasBefore = gasleft();
+        gasTest.withStorage(testStr);
+        gasAfter = gasleft();
+        console.log("Gas used with storage string:", gasBefore - gasAfter);
+
+        // メモリのガス計測
         gasBefore = gasleft();
         gasTest.withMemory(testStr);
         gasAfter = gasleft();
@@ -29,27 +35,5 @@ contract GasTestTest is Test {
         gasTest.withCalldata(testStr);
         gasAfter = gasleft();
         console.log("Gas used with calldata string:", gasBefore - gasAfter);
-    }
-
-    function test_ArrayGasComparison() public {
-        uint256[] memory testArr = new uint256[](10);
-        for (uint i = 0; i < 10; i++) {
-            testArr[i] = i;
-        }
-
-        uint256 gasBefore;
-        uint256 gasAfter;
-
-        // memoryのガス計測
-        gasBefore = gasleft();
-        gasTest.withMemoryArray(testArr);
-        gasAfter = gasleft();
-        console.log("Gas used with memory array:", gasBefore - gasAfter);
-
-        // calldataのガス計測
-        gasBefore = gasleft();
-        gasTest.withCalldataArray(testArr);
-        gasAfter = gasleft();
-        console.log("Gas used with calldata array:", gasBefore - gasAfter);
     }
 }
