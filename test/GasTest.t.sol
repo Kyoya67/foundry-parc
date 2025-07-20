@@ -1,6 +1,7 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
+// 📦 DEPENDENCIES
 import {Test, console} from "lib/forge-std/src/Test.sol";
 import {GasTest} from "../src/GasTest.sol";
 
@@ -12,8 +13,7 @@ contract GasTestTest is Test {
     }
 
     function test_StringGasComparison() public {
-        string
-            memory testStr = "Hello, World! This is a test string to compare gas costs between memory and calldata";
+        string memory testStr = "Hello, World!";
 
         uint256 gasBefore;
         uint256 gasAfter;
