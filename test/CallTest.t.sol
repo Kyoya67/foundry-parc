@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import {Test, console} from "forge-std/Test.sol";
 import {Target, Caller} from "../src/CallTest.sol";
 
-contract CallTest is Test {
+contract CallTestTest is Test {
     Target public target;
     Caller public caller;
 

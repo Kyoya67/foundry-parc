@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-import "forge-std/console.sol";
+import {console} from "lib/forge-std/src/Test.sol";
 
 // ターゲットコントラクト（呼び出される側）
 contract Target {

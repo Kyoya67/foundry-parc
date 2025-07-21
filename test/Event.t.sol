@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-import "forge-std/Test.sol";
+import "lib/forge-std/src/Test.sol";
 import "../src/Event.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
@@ -20,12 +20,10 @@ contract EventTest is Test {
         Vm.Log[] memory entries = vm.getRecordedLogs();
 
         emit log("=== With Indexed ===");
-        for (uint i = 0; i < entries.length; i++) {
+        for (uint256 i = 0; i < entries.length; i++) {
             emit log_named_uint("topics.length", entries[i].topics.length);
-            for (uint j = 0; j < entries[i].topics.length; j++) {
-                string memory label = string(
-                    abi.encodePacked("topic[", Strings.toString(j), "]")
-                );
+            for (uint256 j = 0; j < entries[i].topics.length; j++) {
+                string memory label = string(abi.encodePacked("topic[", Strings.toString(j), "]"));
                 emit log_named_bytes32(label, entries[i].topics[j]);
             }
 
@@ -40,12 +38,10 @@ contract EventTest is Test {
         Vm.Log[] memory entries = vm.getRecordedLogs();
 
         emit log("=== Without Indexed ===");
-        for (uint i = 0; i < entries.length; i++) {
+        for (uint256 i = 0; i < entries.length; i++) {
             emit log_named_uint("topics.length", entries[i].topics.length);
-            for (uint j = 0; j < entries[i].topics.length; j++) {
-                string memory label = string(
-                    abi.encodePacked("topic[", Strings.toString(j), "]")
-                );
+            for (uint256 j = 0; j < entries[i].topics.length; j++) {
+                string memory label = string(abi.encodePacked("topic[", Strings.toString(j), "]"));
                 emit log_named_bytes32(label, entries[i].topics[j]);
             }
 
