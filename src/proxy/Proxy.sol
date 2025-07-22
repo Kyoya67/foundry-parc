@@ -3,8 +3,7 @@ pragma solidity ^0.8.13;
 
 contract Proxy {
     // implementation契約のアドレスを格納するスロット
-    bytes32 private constant IMPLEMENTATION_SLOT =
-        bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1);
+    bytes32 private constant IMPLEMENTATION_SLOT = bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1);
 
     address public owner;
 
